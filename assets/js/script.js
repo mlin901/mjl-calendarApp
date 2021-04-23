@@ -31,18 +31,23 @@ function displayDate() {
 
 // Function - change input field colors based on past, present, future
 function timeDependentColor() {
-    var hour = moment().format('HH');
+    // var hour = moment().format('HH');   // HOUR - RESTORE
+    var hour = 12;
  
     inputGroupEl.each(function() {
         var id = this.id;
-        console.log(hour + '    ++++++++++++++++');
-        console.log(id + '   <=====================');
+        console.log(hour + '    hour');
+        console.log(id + '   id');
         if (id == hour) {
             console.log("}}}}}}}}}}}}}}");
             console.log(this);
             // this.children('input').css('background-color', 'blue');  // ***********
+            $(this).children('input').addClass('bg-info');
+
         } else {
-            console.log('Finally');
+            console.log('else statement');
+            $(this).children('input').addClass('bg-danger');
+
         }
       });
     // var x = inputGroupEl[0];
@@ -58,5 +63,6 @@ function timeDependentColor() {
 displayDate();
 // setInterval(timeDependentColor, 5000);
 timeDependentColor();
+
 
 
