@@ -33,21 +33,20 @@ function displayDate() {
 function timeDependentColor() {
     // var hour = moment().format('HH');   // HOUR - RESTORE
     var hour = 12;
- 
     inputGroupEl.each(function() {
         var id = this.id;
         console.log(hour + '    hour');
         console.log(id + '   id');
         if (id == hour) {
-            console.log("}}}}}}}}}}}}}}");
-            console.log(this);
-            // this.children('input').css('background-color', 'blue');  // ***********
-            $(this).children('input').addClass('bg-info');
-
-        } else {
-            console.log('else statement');
+            // console.log("}}}}}}}}}}}}}}");
+            // console.log(this);
             $(this).children('input').addClass('bg-danger');
 
+        } else if (id < hour){
+            console.log('else statement');
+            $(this).children('input').addClass('bg-secondary');
+        } else {
+            $(this).children('input').addClass('bg-success');
         }
       });
     // var x = inputGroupEl[0];
