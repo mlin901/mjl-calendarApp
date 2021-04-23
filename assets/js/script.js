@@ -1,24 +1,34 @@
-//DONE -> get date from moment and display at top of page
-//ALMOST DONE -> Add timeblocks for business hours
-//Color code timeblocks depending on past, present, future
-//   set class to 
-//       background-danger (red) for *****
-//       background-success (green) for *****
-//       background-secondary (grey) for *****
-//Enable item to be typed in timeblock
-//Add save button for each timeblock 
-//make save button save timeblock item 
-//   (if there is one) to local storage
-//Make save timeblock items show up when page is refreshed (getItem, or
-//   something like that)
-//Use Google fonts
-//width of text column
-//Variables for colors
+// DONE -> get date from moment and display at top of page
+// DONE -> Add timeblocks for business hours
+// DONE -> Color code timeblocks depending on past, present, future
+//        Add bootstrap color classes: 
+//              bg-danger (red) for current
+//              bg-success (green) for future
+//              bg-secondary (grey) for past
+// DONE -:> Update color coding with each minute
+// IP - CSS cleanup
+//      variables for colors 
+//      Remove or comment out unused
+// Enable item to be typed in timeblock
+// Add save button for each timeblock 
+// make save button save timeblock item 
+//  (if there is one) to local storage
+// Make save timeblock items show up when page is refreshed (getItem, or
+//  something like that)
+// Use Google fonts
+// width of text column
+// Reset
+// IP - Add main [DONE], form, etc. - semantic HTML
 
 var rootEl = $('#root'); //?????
 var dayDisplayEl = $('#currentDay');
 var inputFormEl = $('.form-control');
 var inputGroupEl = $('.input-group');
+// *********
+var formEl = $('.input-group');
+var inputFileEl = $('.form-control');
+var mainEl = $('.container');
+
 
 
 // Function - display the date
@@ -31,37 +41,62 @@ function displayDate() {
 
 // Function - change input field colors based on past, present, future
 function timeDependentColor() {
-    // var hour = moment().format('HH');   // HOUR - RESTORE
-    var hour = 12;
+    var hour = moment().format('HH');  
+    // var hour = 12;
     inputGroupEl.each(function() {
         var id = this.id;
-        console.log(hour + '    hour');
-        console.log(id + '   id');
         if (id == hour) {
-            // console.log("}}}}}}}}}}}}}}");
-            // console.log(this);
             $(this).children('input').addClass('bg-danger');
-
+            console.log('if statement');
         } else if (id < hour){
-            console.log('else statement');
+            console.log('else statement 1');
             $(this).children('input').addClass('bg-secondary');
         } else {
+            console.log('else statement 2');
             $(this).children('input').addClass('bg-success');
         }
       });
-    // var x = inputGroupEl[0];
-    // console.log($('input-group').attr('id'));
-    // console.log(inputGroupEl.attr('id') + "    0000000000");
-    // if (inputGroupEl[0].setInterval
-    
-
 }
 
+// Event listener to the parent element, <div id="buttons">
+mainEl.on('click', 'button', function (event) {
+    event.preventDefault();
+
+    var currTargetGrandparent = event.currentTarget.parentElement;
+    console.log(currTargetGrandparent.id);
+    // NEXT ----get value from correct input field
+    // THEN ----Store/get-dispaly values in local storage
+    // Q --- Why does button remain clicked. 
+
+  });
 
 //Call the function to display the date
 displayDate();
-// setInterval(timeDependentColor, 5000);
-timeDependentColor();
+setInterval(timeDependentColor, 60000);
+// timeDependentColor();
 
 
 
+
+
+// ******
+// var handleFormSubmit = function (event) {
+//     event.preventDefault();
+  
+//     var inputVal = inputFileEl.val();
+//     console.log(inputVal + " <=========");
+//     // var dateInput = dateInputEl.val();
+  
+//     // if (!nameInput || !dateInput) {
+//     //   console.log('You need to fill out the form!');
+//     //   return;
+//     // }
+  
+//     // printSkills(nameInput, dateInput);
+  
+//     // resets form
+//     // nameInputEl.val('');
+//     // dateInputEl.val('');
+// };
+// **************************************
+// formEl.on('submit', handleFormSubmit);
