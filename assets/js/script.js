@@ -9,8 +9,9 @@
 // IP - CSS cleanup
 //      variables for colors 
 //      Remove or comment out unused
-// Enable item to be typed in timeblock
-// Add save button for each timeblock 
+// DONE - Enable item to be typed in timeblock
+// DONE - Add save button for each timeblock 
+// IP - Add event listener for save buttons
 // make save button save timeblock item 
 //  (if there is one) to local storage
 // Make save timeblock items show up when page is refreshed (getItem, or
@@ -62,11 +63,21 @@ function timeDependentColor() {
 mainEl.on('click', 'button', function (event) {
     event.preventDefault();
 
-    var currTargetGrandparent = event.currentTarget.parentElement;
-    console.log(currTargetGrandparent.id);
+    var greatGpId = event.currentTarget.parentElement.id +'f';
+    var inputForm = $('#' + greatGpId);
+    console.log(inputForm[0].value);
+    
+    // var currTargetGrandparent = event.currentTarget.parentElement;
+    // var grandparentId = currTargetGrandparent.id
+    // console.log(currTargetGrandparent.id);
+    
+    // formParent = $('#' + grandparentId);
+    // console.log('888888888888');
+
+
     // NEXT ----get value from correct input field
     // THEN ----Store/get-dispaly values in local storage
-    // Q --- Why does button remain clicked. 
+    // Q --- Why does button remain clicked?
 
   });
 
