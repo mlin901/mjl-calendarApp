@@ -56,58 +56,27 @@ function timeDependentColor() {
             console.log('else statement 2');
             $(this).children('input').addClass('bg-success');
         }
-      });
+    });
 }
 
-// Event listener to the parent element, <div id="buttons">
+// Event listener for <main>
 mainEl.on('click', 'button', function (event) {
     event.preventDefault();
 
     var greatGpId = event.currentTarget.parentElement.id +'f';
     var inputForm = $('#' + greatGpId);
-    console.log(inputForm[0].value);
-    
-    // var currTargetGrandparent = event.currentTarget.parentElement;
-    // var grandparentId = currTargetGrandparent.id
-    // console.log(currTargetGrandparent.id);
-    
-    // formParent = $('#' + grandparentId);
-    // console.log('888888888888');
-
-
-    // NEXT ----get value from correct input field
-    // THEN ----Store/get-dispaly values in local storage
+    inputFormValue = inputForm[0].value;
+    console.log(inputFormValue);
+    localStorage.setItem('mjlCalendar_' + greatGpId, inputFormValue);
+  
+    // DONE ----get value from correct input field
+    // THEN ----Store/get-display values in local storage
     // Q --- Why does button remain clicked?
 
-  });
+});
+  
 
 //Call the function to display the date
 displayDate();
 setInterval(timeDependentColor, 60000);
 // timeDependentColor();
-
-
-
-
-
-// ******
-// var handleFormSubmit = function (event) {
-//     event.preventDefault();
-  
-//     var inputVal = inputFileEl.val();
-//     console.log(inputVal + " <=========");
-//     // var dateInput = dateInputEl.val();
-  
-//     // if (!nameInput || !dateInput) {
-//     //   console.log('You need to fill out the form!');
-//     //   return;
-//     // }
-  
-//     // printSkills(nameInput, dateInput);
-  
-//     // resets form
-//     // nameInputEl.val('');
-//     // dateInputEl.val('');
-// };
-// **************************************
-// formEl.on('submit', handleFormSubmit);
