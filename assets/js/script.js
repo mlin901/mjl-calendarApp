@@ -20,6 +20,8 @@
 // width of text column
 // Reset
 // IP - Add main [DONE], form, etc. - semantic HTML
+// Q --- Why does button remain clicked?   ********
+
 
 var rootEl = $('#root'); //?????
 var dayDisplayEl = $('#currentDay');
@@ -48,35 +50,48 @@ function timeDependentColor() {
         var id = this.id;
         if (id == hour) {
             $(this).children('input').addClass('bg-danger');
-            console.log('if statement');
         } else if (id < hour){
-            console.log('else statement 1');
             $(this).children('input').addClass('bg-secondary');
         } else {
-            console.log('else statement 2');
             $(this).children('input').addClass('bg-success');
         }
     });
 }
 
-// Event listener for <main>
+// Adapted from https://stackoverflow.com/questions/38473924/populate-html-form-with-data-saved-on-local-storage
+function loadTasks() {
+    inputFormEl.each(function() {
+        var inputFieldId = this.id;
+        var lsItem = localStorage.getItem('mjlCalendar_' + inputFieldId);
+        if (lsItem) {
+            $('#' + inputFieldId)[0].value = lsItem.trim();
+        }
+    });
+}
+
+// Click event listener for buttons in <main>
 mainEl.on('click', 'button', function (event) {
     event.preventDefault();
-
+    // Construct the ID used to get the input form that corresponds
+    //   to the clicked button
     var greatGpId = event.currentTarget.parentElement.id +'f';
     var inputForm = $('#' + greatGpId);
-    inputFormValue = inputForm[0].value;
-    console.log(inputFormValue);
-    localStorage.setItem('mjlCalendar_' + greatGpId, inputFormValue);
-  
-    // DONE ----get value from correct input field
-    // THEN ----Store/get-display values in local storage
-    // Q --- Why does button remain clicked?
-
+    // Get the input text from the input form
+    inputFormValue = inputForm[0].value.trim();
+    // If there's text in the form...
+    if (inputFormValue) {
+        // Store in local storage
+        localStorage.setItem('mjlCalendar_' + greatGpId, inputFormValue);
+    } else {
+        alert('Enter a task before clicking the save button');
+    }
 });
-  
+
 
 //Call the function to display the date
 displayDate();
+// Every minute, call the function that sets input field color
+//   to indicate past, present, future
 setInterval(timeDependentColor, 60000);
-// timeDependentColor();
+// Call function that loads saved tasks from local storage
+loadTasks();
