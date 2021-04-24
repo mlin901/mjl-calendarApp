@@ -11,28 +11,27 @@
 //      Remove or comment out unused
 // DONE - Enable item to be typed in timeblock
 // DONE - Add save button for each timeblock 
-// IP - Add event listener for save buttons
-// make save button save timeblock item 
-//  (if there is one) to local storage
-// Make save timeblock items show up when page is refreshed (getItem, or
-//  something like that)
+// DONE - Add event listener for save buttons
+// DONE - make save button save timeblock item 
+//       (if there is one) to local storage
+//  DONE - Make save timeblock items show up when page is refreshed (getItem, or
+//          something like that)
+// Add date to local storage keys?
 // Use Google fonts
 // width of text column
+// Spacing between "rows"
 // Reset
-// IP - Add main [DONE], form, etc. - semantic HTML
+// IP - Add main [DONE], form[DONE], etc. - semantic HTML
 // Q --- Why does button remain clicked?   ********
+// Add clear tasks button?
 
-
-var rootEl = $('#root'); //?????
+// var rootEl = $('#root'); //?????
 var dayDisplayEl = $('#currentDay');
 var inputFormEl = $('.form-control');
 var inputGroupEl = $('.input-group');
-// *********
 var formEl = $('.input-group');
 var inputFileEl = $('.form-control');
 var mainEl = $('.container');
-
-
 
 // Function - display the date
 function displayDate() {
@@ -60,9 +59,13 @@ function timeDependentColor() {
 
 // Adapted from https://stackoverflow.com/questions/38473924/populate-html-form-with-data-saved-on-local-storage
 function loadTasks() {
+    //For each input form...
     inputFormEl.each(function() {
+        // Get the ID...
         var inputFieldId = this.id;
+        // And use it to get data for the field
         var lsItem = localStorage.getItem('mjlCalendar_' + inputFieldId);
+        // If there is data for the field, populate the field
         if (lsItem) {
             $('#' + inputFieldId)[0].value = lsItem.trim();
         }
@@ -77,16 +80,15 @@ mainEl.on('click', 'button', function (event) {
     var greatGpId = event.currentTarget.parentElement.id +'f';
     var inputForm = $('#' + greatGpId);
     // Get the input text from the input form
-    inputFormValue = inputForm[0].value.trim();
+    inputFormValue = inputForm[0].value;
     // If there's text in the form...
     if (inputFormValue) {
-        // Store in local storage
+        // Store in local storage using the field ID as the key
         localStorage.setItem('mjlCalendar_' + greatGpId, inputFormValue);
     } else {
         alert('Enter a task before clicking the save button');
     }
 });
-
 
 //Call the function to display the date
 displayDate();
