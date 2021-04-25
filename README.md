@@ -15,7 +15,7 @@ I chose to use Bootstrap classes to control input field colors, even though they
 Links:
 
 * [Published app](https://mlin901.github.io/mjl-calendarApp/)
-* [Screen capture (below)]()
+* [Screen capture (below)](#screencap)
 
 There are no media queries in this app because the primary elements are Bootstrap components, so Bootstrap does the work of making this app responsive. And it is responsive: Chrome developer tools indicates that it works fine down to about 350px wide (when set to "Responsive"), and it works fine for most device settings (the items under "Responsive" in the dropdown list--e.g., iPad).
 
@@ -23,6 +23,8 @@ A couple of features are, of course, glaringly absent: the ability to change day
 
 Another thing that might really help the app is to have focus move to the next timeblock input field when the user presses enter in a timblock input field*****
 
+## <a name="screencap"></a>Screen capture
+![Calendar application screen capture](./assets/images/CalendarAppScreenCap.jpg)
 
 
 
