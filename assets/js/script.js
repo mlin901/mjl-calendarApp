@@ -25,13 +25,77 @@
 // Q --- Why does button remain clicked?   ********
 // Add clear tasks button?
 
-// var rootEl = $('#root'); //?????
+var rootEl = $('#root'); 
 var dayDisplayEl = $('#currentDay');
-var inputFormEl = $('.form-control');
-var inputGroupEl = $('.input-group');
 var formEl = $('.input-group');
 var inputFileEl = $('.form-control');
 var mainEl = $('.container');
+
+// Adapted from 9-Ins_Event-Delegation class activity
+function renderTimeblocks() {
+    var hours = [
+      ['07', '7 AM'],
+      ['08', '8 AM'],
+      ['09', '9 AM'],
+      ['10', '10 AM'],
+      ['11', '11 AM'],
+      ['12', '12 AM'],
+      ['13', '1 AM'],
+      ['14', '2 AM'],
+      ['15', '3 AM'],
+      ['16', '4 AM'],
+      ['17', '5 AM'],
+    ];
+  
+    // Dynamically create timeblocks
+    // Create a for-loop to iterate through the hours array.
+    for (var i = 0; i < hours.length; i++) {
+        // Create form
+        var hoursForm = $('<form>');
+        // Assign attributes
+        hoursForm.addClass('input-group mb-3');
+        hoursForm.attr('id', hours[i][0]);
+        // Append form
+        mainEl.append( hoursForm );
+
+        // Create label span
+        var hoursSpan = $('<span>');
+        // Assign attributes
+        hoursSpan.addClass('input-group-text');
+        hoursSpan.attr('id', 'basic-addon1')
+        // Display hours text
+        hoursSpan.text(hours[i][1]);
+        // Append lable span
+        hoursForm.append(hoursSpan);
+
+        // Create input field
+        var hoursInput = $('<input>');
+        // Assign attributes
+        hoursInput.attr('type', 'text');
+        hoursInput.addClass('form-control text-white');
+        hoursInput.attr('id', hours[i][0] + 'f');
+        hoursInput.attr('placeholder', 'Add task');
+        hoursInput.attr('aria-describedby', 'button-addon2');
+        // Append input field
+        hoursForm.append(hoursInput);
+
+        // Create button
+        var hoursButton = $('<button>');
+        // Assign attributes
+        hoursButton.addClass('btn btn-outline-secondary');
+        hoursButton.attr('type', 'submit');
+        hoursButton.attr('id', 'button-addon2')
+        // Append button
+        hoursForm.append(hoursButton);
+
+        // Create icon
+        // Create icon element (icon tag and class) in one step, 
+        //    unlike the above, which were created without attributes
+        //    and then had attributes added to them.
+        var hoursIcon = $('<i class="far fa-save"></i>')
+        hoursButton.append(hoursIcon);
+    }
+}
 
 // Function - display the date
 function displayDate() {
@@ -45,8 +109,11 @@ function displayDate() {
 function timeDependentColor() {
     var hour = moment().format('HH');  
     // var hour = 12;
+    var inputGroupEl = $('.input-group');
     inputGroupEl.each(function() {
         var id = this.id;
+        // console.log(this);
+        // console.log(id);
         if (id == hour) {
             $(this).children('input').addClass('bg-danger');
         } else if (id < hour){
@@ -60,6 +127,7 @@ function timeDependentColor() {
 // Adapted from https://stackoverflow.com/questions/38473924/populate-html-form-with-data-saved-on-local-storage
 function loadTasks() {
     //For each input form...
+    var inputFormEl = $('.form-control');
     inputFormEl.each(function() {
         // Get the ID...
         var inputFieldId = this.id;
@@ -94,6 +162,11 @@ mainEl.on('click', 'button', function (event) {
 displayDate();
 // Every minute, call the function that sets input field color
 //   to indicate past, present, future
-setInterval(timeDependentColor, 60000);
+
+renderTimeblocks();
+timeDependentColor();
+
 // Call function that loads saved tasks from local storage
 loadTasks();
+
+setInterval(timeDependentColor, 60000);
