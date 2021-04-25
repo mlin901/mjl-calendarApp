@@ -12,11 +12,18 @@ This app was implemented using a number of web developement techologies, includi
 
 I chose to use Bootstrap classes to control input field colors, even though they're not ideal for this app. (They're too bright and the class names don't reflect their purpose in this context.) I chose them just to get more experience in using Bootstrap features. In other cases, though, I used styles in style.css to customize Bootstrap colors and formatting.
 
+Links:
+
+* [Published app](https://mlin901.github.io/mjl-calendarApp/)
+* [Screen capture (below)]()
+
 There are no media queries in this app because the primary elements are Bootstrap components, so Bootstrap does the work of making this app responsive. And it is responsive: Chrome developer tools indicates that it works fine down to about 350px wide (when set to "Responsive"), and it works fine for most device settings (the items under "Responsive" in the dropdown list--e.g., iPad).
 
 A couple of features are, of course, glaringly absent: the ability to change days and a feature to clear tasks. To implement the former, there would need to be a calendar selector field, the displayDate() function would need to be updated to display the chosen date (the current date by default), and the get/set code for local storage would need to be updated to include the date in the local storage keys. As for a feature to clear tasks, I think that's a usability question. Add a "remove task" button to each timeblock, or add just one "clear" button at the bottom of the page to clear out all timeblocks for the day? Or maybe both. 
 
 Another thing that might really help the app is to have focus move to the next timeblock input field when the user presses enter in a timblock input field*****
+
+
 
 
 
