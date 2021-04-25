@@ -84,7 +84,7 @@ function renderTimeblocks() {
         // Create button
         var hoursButton = $('<button>');
         // Assign attributes
-        hoursButton.addClass('btn btn-outline-secondary');
+        hoursButton.addClass('btn btn-outline-secondary saveBtn');
         hoursButton.attr('type', 'submit');
         hoursButton.attr('id', 'button-addon2')
         // Append button
