@@ -18,15 +18,17 @@
 //          something like that)
 // Add date to local storage keys?
 // Use Google fonts
-// width of text column
-// Spacing between "rows"
-// Reset
-// IP - Add main [DONE], form[DONE], etc. - semantic HTML
+// DONE - width of text column
+// DONE - Spacing between "rows"
+// NO - Reset
+// DONE - Add main [DONE], form[DONE], etc. - semantic HTML
+// NO - Add clear tasks button?
 // Q --- Why does button remain clicked?   ********
-// Add clear tasks button?
+
 
 var rootEl = $('#root'); 
 var dayDisplayEl = $('#currentDay');
+var timeDisplayEl = $('#currentTime');
 var formEl = $('.input-group');
 var inputFileEl = $('.form-control');
 var mainEl = $('.container');
@@ -97,11 +99,12 @@ function renderTimeblocks() {
     }
 }
 
-// Function - display the date
+// Function - display the date and time
 function displayDate() {
-    var today = moment().format('MMM DD, YYYY');
-    // var today = moment().format('MMM DD, YYYY [at] hh:mm:ss a');
+    var today = moment().format('dddd, MMMM Do YYYY');
+    var time = moment().format('h:mm a');
     dayDisplayEl.text(today);
+    timeDisplayEl.text(time);
     timeDependentColor(today);
 }
 
@@ -169,4 +172,4 @@ timeDependentColor();
 // Call function that loads saved tasks from local storage
 loadTasks();
 
-setInterval(timeDependentColor, 60000);
+setInterval(timeDependentColor, 6000);
