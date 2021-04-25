@@ -120,6 +120,10 @@ textarea {
   background-color: var(--lightblue);
 }
 
-#currentDay {
+#currentDay, #currentTime {
   color: darkred;
+}
+
+#instructions {
+  font-size: 15px;
 }
