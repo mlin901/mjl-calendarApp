@@ -1,9 +1,7 @@
-/* Color variables defined (except black and white - no variables needed for those) */
+/* Color variables defined (except named web colors---e.g., black and 
+   white--no variables needed for those) */
 :root {
   --brown: #a88f82;
-  --tan: #f5e1d5;
-  --teal: #71a8a7;
-  --lightteal: #d5f5f5;
   --light: #fffaf7;
   --lightblue: #a8c0d8;
 }
@@ -14,14 +12,7 @@ body {
   line-height: 1;
 }
 
-textarea {
-  background: transparent;
-  border: none;
-  resize: none;
-  color: black;
-  border-left: 1px solid black;
-  padding: 10px;
-}
+/* Class-based styles */
 
 .jumbotron {
   text-align: center;
@@ -29,27 +20,6 @@ textarea {
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
-}
-
-.description {
-  white-space: pre-wrap;
-}
-
-.time-block {
-  text-align: center;
-  border-radius: 15px;
-}
-
-.row {
-  white-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid white;
-}
-
-.hour {
-  background-color: white;
-  color: black;
-  border-top: 1px dashed black;
 }
 
 .saveBtn {
@@ -101,6 +71,8 @@ textarea {
   border-bottom: 5px solid darkslategray;
   background-color: var(--lightblue);
 }
+
+/* ID-based styles */
 
 #currentDay, #currentTime {
   color: darkred;
