@@ -1,39 +1,13 @@
-// DONE -> get date from moment and display at top of page
-// DONE -> Add timeblocks for business hours
-// DONE -> Color code timeblocks depending on past, present, future
-//        Add bootstrap color classes: 
-//              bg-danger (red) for current
-//              bg-success (green) for future
-//              bg-secondary (grey) for past
-// DONE -:> Update color coding with each minute
-// IP - CSS cleanup
-//      variables for colors 
-//      Remove or comment out unused
-// DONE - Enable item to be typed in timeblock
-// DONE - Add save button for each timeblock 
-// DONE - Add event listener for save buttons
-// DONE - make save button save timeblock item 
-//       (if there is one) to local storage
-//  DONE - Make save timeblock items show up when page is refreshed (getItem, or
-//          something like that)
-// Add date to local storage keys?
-// Use Google fonts
-// DONE - width of text column
-// DONE - Spacing between "rows"
-// NO - Reset
-// DONE - Add main [DONE], form[DONE], etc. - semantic HTML
-// NO - Add clear tasks button?
-// Q --- Why does button remain clicked?   ********
-
-
 var rootEl = $('#root'); 
 var dayDisplayEl = $('#currentDay');
 var timeDisplayEl = $('#currentTime');
 var formEl = $('.input-group');
-var inputFileEl = $('.form-control');
 var mainEl = $('.container');
 
-// Adapted from 9-Ins_Event-Delegation class activity
+
+// Function - Dynamically generate and append (render) timeblocks
+//   with labels, input forms, and save buttons. (Adapted from 
+//   9-Ins_Event-Delegation class activity.)
 function renderTimeblocks() {
     var hours = [
       ['07', '7 AM'],
@@ -49,30 +23,30 @@ function renderTimeblocks() {
       ['17', '5 AM'],
     ];
   
-    // Dynamically create timeblocks
-    // Create a for-loop to iterate through the hours array.
+    // Dynamically create timeblocks while iterating through 
+    //   the hours array.
     for (var i = 0; i < hours.length; i++) {
-        // Create form
+        // Create form element
         var hoursForm = $('<form>');
-        // Assign attributes
+        // Assign attributes to form
         hoursForm.addClass('input-group mb-3');
         hoursForm.attr('id', hours[i][0]);
         // Append form
         mainEl.append( hoursForm );
 
-        // Create label span
+        // Create label span element
         var hoursSpan = $('<span>');
-        // Assign attributes
+        // Assign attributes to span
         hoursSpan.addClass('input-group-text');
         hoursSpan.attr('id', 'basic-addon1')
-        // Display hours text
+        // Display hours text in span
         hoursSpan.text(hours[i][1]);
         // Append lable span
         hoursForm.append(hoursSpan);
 
-        // Create input field
+        // Create input field element
         var hoursInput = $('<input>');
-        // Assign attributes
+        // Assign attributes to input element
         hoursInput.attr('type', 'text');
         hoursInput.addClass('form-control text-white');
         hoursInput.attr('id', hours[i][0] + 'f');
@@ -81,16 +55,15 @@ function renderTimeblocks() {
         // Append input field
         hoursForm.append(hoursInput);
 
-        // Create button
+        // Create button element
         var hoursButton = $('<button>');
-        // Assign attributes
+        // Assign attributes to button element
         hoursButton.addClass('btn btn-outline-secondary saveBtn');
         hoursButton.attr('type', 'submit');
         hoursButton.attr('id', 'button-addon2')
         // Append button
         hoursForm.append(hoursButton);
 
-        // Create icon
         // Create icon element (icon tag and class) in one step, 
         //    unlike the above, which were created without attributes
         //    and then had attributes added to them.
@@ -99,7 +72,7 @@ function renderTimeblocks() {
     }
 }
 
-// Function - display the date and time
+// Function - display the date and time (uses Moment.js)
 function displayDate() {
     var today = moment().format('dddd, MMMM Do YYYY');
     var time = moment().format('h:mm a');
@@ -109,14 +82,12 @@ function displayDate() {
 }
 
 // Function - change input field colors based on past, present, future
+//  Uses Moment.js.
 function timeDependentColor() {
     var hour = moment().format('HH');  
-    // var hour = 12;
     var inputGroupEl = $('.input-group');
     inputGroupEl.each(function() {
         var id = this.id;
-        // console.log(this);
-        // console.log(id);
         if (id == hour) {
             $(this).children('input').addClass('bg-danger');
         } else if (id < hour){
@@ -127,6 +98,7 @@ function timeDependentColor() {
     });
 }
 
+// Function - Load saved tasks from local storage when the page is loaded.
 // Adapted from https://stackoverflow.com/questions/38473924/populate-html-form-with-data-saved-on-local-storage
 function loadTasks() {
     //For each input form...
@@ -143,7 +115,7 @@ function loadTasks() {
     });
 }
 
-// Click event listener for buttons in <main>
+// Event listener for button clicks in <main>
 mainEl.on('click', 'button', function (event) {
     event.preventDefault();
     // Construct the ID used to get the input form that corresponds
@@ -161,15 +133,13 @@ mainEl.on('click', 'button', function (event) {
     }
 });
 
-//Call the function to display the date
+// Display the date
 displayDate();
-// Every minute, call the function that sets input field color
-//   to indicate past, present, future
-
+// Dynamically generate timeblocks
 renderTimeblocks();
+// Color timeblocks based on whether they're in the past, present, or future
 timeDependentColor();
-
-// Call function that loads saved tasks from local storage
+// Load saved tasks from local storage
 loadTasks();
-
+// With every minute, color timeblocks to indicate past, present, future
 setInterval(timeDependentColor, 6000);
