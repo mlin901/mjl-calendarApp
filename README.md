@@ -1,6 +1,6 @@
 # mjl-calendarApp
 
-This assigment, which is the homework for the 05-Third-Party-APIs section of bootcamp, was to create a calendar app to save tasks for different timeblocks in the current day. To add a task, the user enters the task in the form field for one of the timeblocks and then clicks the save button for that timeblock. When the button is clicked, the task remains displayed and is saved to local storage. When the app page is refreshed, saved tasks are retrieved from local storage and displayed in their respective timeblock input fields. 
+A calendar app to save tasks for different timeblocks in the current day. To add a task, the user enters the task in the form field for one of the timeblocks and then clicks the save button for that timeblock. When the button is clicked, the task remains displayed and is saved to local storage. When the app page is refreshed, saved tasks are retrieved from local storage and displayed in their respective timeblock input fields. 
 
 This app was implemented using a number of web developement techologies, including
 
